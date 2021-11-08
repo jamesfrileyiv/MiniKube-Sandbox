@@ -1,6 +1,8 @@
 # MiniKube-Sandbox
 Sandbox repo for learning Kubernetes with MiniKube
 
+This is the Vanilla branch. It provides the bare minimum to get you up and running with MiniKube. There is nothing extra that I will be working on for my own personal and professional development.
+
 <h1>General Usage and Branch Structure</h1>
 If you wish to use this sandbox too, I will be maintaining a branch called "Vanilla" which will only automate the setup of minikube. You can clone this branch to start using and learning as you see fit. 
 I will also have a dev branch to learn and get things work, and once working the changes will be merged into main.
