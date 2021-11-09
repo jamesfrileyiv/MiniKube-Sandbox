@@ -7,30 +7,30 @@ I will also have a dev branch to learn and get things work, and once working the
 
 <h1>Pre-requisites</h1>
 
-    * Virtualized hardware will need:
-        * 20 GB free storage
-        * 2 GB free memory
-        * 2 CPUs
-    * Software
-        * Vagrant: https://www.vagrantup.com/docs/installation
-        * Virtualbox: https://www.virtualbox.org/wiki/Downloads
-        * git for cloning the repository
+  * Virtualized hardware will need:
+      * 20 GB free storage
+      * 2 GB free memory
+      * 2 CPUs
+  * Software
+      * Vagrant: https://www.vagrantup.com/docs/installation
+      * Virtualbox: https://www.virtualbox.org/wiki/Downloads
+      * git for cloning the repository
 
 All of these applications can also be installed via CLI on Windows with Chocolatey, and Mac with Homebrew
 
 <h1>Setup Instructions</h1>
 
-    * cd into the directory where you cloned the repository. This directory should contain the "Vagrantfile"
-    * run the command "vagrant up" to provision and configure your vm
-    * After the virtual machine is configured, run the command "vagrant ssh" to ssh into the vm you just provisioned and configured
-    * Start minikube by running the command "minikube start"
-        * This uses the Docker driver to run minikube, i.e. minikube is itself a docker container requiring the docker engine to run, and also has the docker-engine installed in the container so that Kubernetes pods can use docker as their container run-time.
+  * cd into the directory where you cloned the repository. This directory should contain the "Vagrantfile"
+  * run the command "vagrant up" to provision and configure your vm
+  * After the virtual machine is configured, run the command "vagrant ssh" to ssh into the vm you just provisioned and configured
+  * Start minikube by running the command "minikube start"
+      * This uses the Docker driver to run minikube, i.e. minikube is itself a docker container requiring the docker engine to run, and also has the docker-engine installed in the container so that Kubernetes pods can use docker as their container run-time.
 
 When you are done with testing/working with minikube:
-    * Exit your vm with the command exit
-    * Power down vm with command "vagrant halt"; or,
-    * Suspend vm with command "vagrant suspend". You will need to use "vagrant resume" to start vm again; or,
-    * Destroy vm with command "vagrant destroy". You can easily create again with the "vagrant up" command
+  * Exit your vm with the command exit
+  * Power down vm with command "vagrant halt"; or,
+  * Suspend vm with command "vagrant suspend". You will need to use "vagrant resume" to start vm again; or,
+  * Destroy vm with command "vagrant destroy". You can easily create again with the "vagrant up" command
 
 <h1>Technical Difficulties</h1>
 
@@ -45,10 +45,10 @@ Confirmed I was running script as user vagrant, not running as root (provisioner
 
 <h1>Next Steps</h1>
 
-    * Convert configuration bash script to an ansible playbook
-    * Utilize the Ansible/Packer/Terraform stack to automate MiniKube VM provisioning/configuration to public cloud
-    * Run a Jenkins or Gitlab container
-    * Run Argo CD
-    * Configure CI/CD pipelines for DevOps/GitOps workflows
-    * Run a simple web app 
-    * Monitor with a Prometheus container 
+  * Convert configuration bash script to an ansible playbook
+  * Utilize the Ansible/Packer/Terraform stack to automate MiniKube VM provisioning/configuration to public cloud
+  * Run a Jenkins or Gitlab container
+  * Run Argo CD
+  * Configure CI/CD pipelines for DevOps/GitOps workflows
+  * Run a simple web app 
+  * Monitor with a Prometheus container 
