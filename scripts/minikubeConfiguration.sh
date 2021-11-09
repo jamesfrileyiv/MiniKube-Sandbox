@@ -20,4 +20,4 @@ minikube config set driver docker
 # sudo usermod -aG docker vagrant      # vagrant is default user for vagrant provisioned VMs
 
 sudo newgrp docker
-sudo usermod -aG docker vagrant # && newgrp docker
+sudo usermod -aG docker vagrant

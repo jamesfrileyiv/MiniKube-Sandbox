@@ -13,6 +13,10 @@ Vagrant.configure("2") do |config|
     minikube.vm.disk :disk, size: "20GB", primary: true 
     minikube.vm.network "private_network", ip: "10.1.0.2"
     minikube.vm.network "forwarded_port", guest: 80, host: 8080
-    minikube.vm.provision "shell", privileged: false, path: "scripts/minikubeConfiguration.sh"
+    minikube.vm.provision "shell",privileged: true, path: "scripts/installAnsible.sh"
+    minikube.vm.provision "ansible_local" do |ansible|
+      ansible.playbook = "ansible/minikubeConfiguration.yml"
+    end
+    # minikube.vm.provision "shell", privileged: false, path: "scripts/minikubeConfiguration.sh"
   end
 end
