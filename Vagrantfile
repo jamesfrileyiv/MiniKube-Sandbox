@@ -15,7 +15,8 @@ Vagrant.configure("2") do |config|
     minikube.vm.network "forwarded_port", guest: 80, host: 8080
     minikube.vm.provision "shell",privileged: true, path: "scripts/installAnsible.sh"
     minikube.vm.provision "ansible_local" do |ansible|
-      ansible.playbook = "ansible/minikubeConfiguration.yml"
+      ansible.playbook = "ansible/main.yml"
+      # ansible.playbook = "ansible/minikubeConfiguration.yml"
     end
     # minikube.vm.provision "shell", privileged: false, path: "scripts/minikubeConfiguration.sh"
   end

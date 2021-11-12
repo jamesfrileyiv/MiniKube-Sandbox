@@ -1,0 +1,4 @@
+---
+# vars file for minikube_container
+
+minikube_install_path: /usr/local/bin/minikube

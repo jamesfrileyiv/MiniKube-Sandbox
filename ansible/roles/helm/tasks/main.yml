@@ -1,0 +1,27 @@
+---
+# tasks file for helm
+
+- name: Get GPG key for Helm
+  ansible.builtin.apt_key:
+      url: https://baltocdn.com/helm/signing.asc 
+      state: present
+  become: yes 
+
+- name: Install apt-transport-https
+  ansible.builtin.apt:
+    name: apt-transport-https
+    state: latest
+  become: yes 
+
+- name: Setup Helm repository
+  ansible.builtin.copy:
+    content: "deb https://baltocdn.com/helm/stable/debian/ all main"
+    dest: /etc/apt/sources.list.d/helm-stable-debian.list
+  become: yes 
+
+- name: Install Helm
+  ansible.builtin.apt:
+    name: helm
+    update_cache: yes 
+    state: latest
+  become: yes

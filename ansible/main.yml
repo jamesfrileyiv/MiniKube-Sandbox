@@ -1,0 +1,7 @@
+---
+- hosts: minikube
+  roles:
+    - docker_host
+    - minikube_container
+    - helm
+    - kubectl

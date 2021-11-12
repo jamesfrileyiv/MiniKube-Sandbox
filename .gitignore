@@ -1,1 +1,10 @@
 /.vagrant
+/scripts/get_helm.sh
+/ansible/minikubeConfiguration.yml
+/ansible/roles/*/.travis.yml 
+/ansible/roles/*/tests
+/ansible/roles/*/templates
+/ansible/roles/*/meta 
+/ansible/roles/*/handlers 
+/ansible/roles/*/files
+/ansible/roles/*/defaults

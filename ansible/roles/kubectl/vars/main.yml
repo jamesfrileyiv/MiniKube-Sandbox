@@ -1,0 +1,10 @@
+---
+# vars file for kubectl
+
+kubectl_prereq_packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+key_url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+key_file: /usr/share/keyrings/kubernetes-archive-keyring.gpg
+repo_location: /etc/apt/sources.list.d/kubernetes.list

@@ -1,0 +1,25 @@
+---
+- include_vars: ./vars/main.yml
+
+- name: Download MiniKube to install location
+  ansible.builtin.get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    dest: "{{minikube_install_path}}"
+  become: yes 
+
+- name: Set MiniKube permissions
+  ansible.builtin.file:
+    path: "{{minikube_install_path}}"
+    owner: vagrant
+    group: vagrant
+    mode: u=rwx,g=r-x,o=r-x
+  become: yes
+
+- name: Set default MiniKube driver
+  ansible.builtin.command: minikube config set driver docker
+
+# since ../../docker_host/tasks/main.yml task to reset ssh connection doesn't work
+# when run for ansible_local provisioner, this does not work as changes to docker group
+# will not take effect
+# - name: Start minikube
+#   ansible.builtin.command: minikube start

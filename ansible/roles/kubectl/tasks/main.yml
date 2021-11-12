@@ -1,0 +1,29 @@
+---
+# tasks file for kubectl
+
+- include_vars: ../vars/main.yml
+
+- name: Update the apt package index and install packages needed to use the Kubernetes apt repository
+  ansible.builtin.apt:
+    name: "{{ kubectl_prereq_packages }}"
+    update_cache: yes 
+  become: yes
+
+- name: Download the Google Cloud public signing key
+  ansible.builtin.apt_key:
+    url: "{{ key_url }}"
+    keyring: "{{ key_file }}"
+  become: yes 
+
+- name: Add the Kubernetes apt repository
+  ansible.builtin.copy:
+    content: "deb [signed-by={{vars.key_file}}] https://apt.kubernetes.io/ kubernetes-xenial main"
+    dest: "{{ repo_location }}"
+  become: yes 
+
+- name: Update apt package index with the new repository and install kubectl
+  ansible.builtin.apt:
+    name: kubectl
+    state: latest
+    update_cache: yes
+  become: yes
