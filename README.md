@@ -44,11 +44,15 @@ I tried for about 90 minutes to get this command to work from the minikubeConfig
 Confirmed I was running script as user vagrant, not running as root (provisioner privileged:false in Vagrantfile), and added the user vagrant to the docker group, but still am not able to run the command without errors.
 
 <h1>Next Steps</h1>
-
+<h2>Completed</h2>
+  
   * Convert configuration bash script to an ansible playbook
+
+<h2>Pending</h2> 
+
   * Utilize the Ansible/Packer/Terraform stack to automate MiniKube VM provisioning/configuration to public cloud
   * Run a Jenkins or Gitlab container
   * Run Argo CD
   * Configure CI/CD pipelines for DevOps/GitOps workflows
   * Run a simple web app 
-  * Monitor with a Prometheus container 
+  * Monitor with Prometheus 
