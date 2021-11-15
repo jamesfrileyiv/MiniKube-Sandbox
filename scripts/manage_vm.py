@@ -22,7 +22,8 @@ def main():
     change_working_directory_to_vagrantfile()
 
     # sanity check; check for Vagrantfile
-    check_for_vagrantfile()
+    if not check_for_vagrantfile():
+        exit(1)
 
     if args.provision:
         provision_vm()
@@ -40,14 +41,22 @@ def main():
 
 
 def check_for_vagrantfile():
-    print("Checking for Vagrantfile")
-    print(os.path.abspath(os.path.curdir))
+    """
+    Checks for Vagrantfile in current directory
+    :return: True if Vagrantfile found, else False
+    """
+    # return os.path.exists('Vagrantfile')
+    # print("Checking for Vagrantfile")
+    # print(os.path.abspath(os.path.curdir))
     if not os.path.exists('Vagrantfile'):
         print("ERROR: Vagrantfile not found")
-        exit(1)
+        return False
+    else:
+        return True
 
 
 def options_error_checking():
+    """Ensures command line options are valid, exits if not and displays the help message"""
     flag = False        # default value
     help_flag = False   # default value
     if '-h' in sys.argv or '--help' in sys.argv:
@@ -69,6 +78,10 @@ def options_error_checking():
 
 
 def change_working_directory_to_vagrantfile():
+    """
+    Changes the working directory to where the Vagrantfile is. This is either specified by the user with the -f or
+    --file flags or uses the default location of ../Vagrantfile
+    """
     if args.file:
         folder_path = os.path.dirname(os.path.abspath(args.file))
         # print(f"folder_path = {folder_path}")
@@ -87,13 +100,10 @@ def provision_vm():
             * Vagrantfile is located in current working directory
             * the ansible gets installed on the vagrant box
             * the specified ansible playbook exists and doesn't error
-    :return:
     """
-    print("provision_vm function placeholder")
     vm_name = get_vagrant_box()
     if get_status():
         print(f"{vm_name} is already provisioned")
-        exit(1)
     else:
         subprocess.run(['vagrant', 'up'], stdout=sys.stdout)
         subprocess.run(['vagrant', 'ssh', '-c', '"ansible-playbook /vagrant/ansible/kubernetesConfiguration.yml"'],
@@ -122,7 +132,7 @@ def display_status():
         Assumes:
             * Vagrantfile in current working directory
     """
-    os.system('vagrant status')     # os.system used for easier stdout
+    subprocess.run(['vagrant', 'status'], stdout=sys.stdout)
 
 
 def get_status():
@@ -135,12 +145,9 @@ def get_status():
     """
     vm_name = get_vagrant_box()
     vagrant_status = subprocess.run(['vagrant', 'status'], stdout=subprocess.PIPE)
-    print(type(vagrant_status.stdout.decode('utf-8')))
     if 'not created' in vagrant_status.stdout.decode('utf-8').lower():
-        print(f"{vm_name} is not created")
         return False
     else:
-        print(f"{vm_name} is created")
         return True
 
 

@@ -25,7 +25,7 @@ All of these applications can also be installed via CLI on Windows with Chocolat
 
 Recommended Setup:
 
-In the scripts folder, run the `manage_vm.py` script. This script will provision the vagrant box, and configure the vm and minikube instance (also starting it). Use the `-p` flag to provision and configure the vm. Use the `-d` flag if you want to destroy the currently provisioned vagrant box. Use the `r` flag to destroy then re-provision the vm.
+In the scripts folder, run the `manage_vm.py` script. This script will provision the vagrant box, and configure the vm and minikube instance (also starting it). Use the `-p` flag to provision and configure the vm. Use the `-d` flag if you want to destroy the currently provisioned vagrant box. Use the `-r` flag to destroy then re-provision the vm.
 
 The reason this script exists is because while developing code, I was constantly running the `vagrant destroy -f` and `vagrant up` commands in succession. Also, for minikube to start, changes to the docker group need to take effect, but I was not able to get this to work in either a single bash script or ansible_local provisioners. `newgrp` and `ssh_reset` were not working. What the `manage_vm.py` script does is it allows the provisioner ssh connection to break before again connecting with a new `vagrant ssh` to run the next playbook which finishes the configuration required after starting minikube.
 
