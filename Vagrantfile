@@ -13,11 +13,17 @@ Vagrant.configure("2") do |config|
     minikube.vm.disk :disk, size: "20GB", primary: true 
     minikube.vm.network "private_network", ip: "10.1.0.2"
     minikube.vm.network "forwarded_port", guest: 80, host: 8080
-    minikube.vm.provision "shell",privileged: true, path: "scripts/installAnsible.sh"
+    minikube.vm.provision "shell", privileged: true, path: "scripts/installAnsible.sh"
     minikube.vm.provision "ansible_local" do |ansible|
-      ansible.playbook = "ansible/main.yml"
-      # ansible.playbook = "ansible/minikubeConfiguration.yml"
+      ansible.playbook = "ansible/minikubeHostConfiguration.yml"
     end
-    # minikube.vm.provision "shell", privileged: false, path: "scripts/minikubeConfiguration.sh"
+
+    # these steps require the docker group changes be in effect, which doesn't seem possible in vagrant (at least with ansible_local)
+    # newgrp shell command isn't working
+    # can't reset ssh connection
+    # had similar issues when running a bash script with the shell provisioner
+    # minikube.vm.provision "ansible_local" do |ansible|
+    #   ansible.playbook = "ansible/kubernetesConfiguration.yml"
+    # end
   end
 end

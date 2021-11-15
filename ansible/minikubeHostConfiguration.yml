@@ -1,0 +1,8 @@
+---
+# This playbook configures our minikube vm to run MiniKube 
+- hosts: minikube
+  roles:
+    - docker_host
+    - minikube_container
+    # - helm
+    # - kubectl

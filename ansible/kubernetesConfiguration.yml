@@ -1,0 +1,20 @@
+---
+# This playbook configures our Kubernetes Cluster (e.g. minikube)
+
+- hosts: localhost
+  tasks:
+    - name: Apply changes to docker group
+      ansible.builtin.shell:
+        cmd: newgrp docker
+        executable: /bin/bash
+      become: yes
+    - name: start minikube container
+      ansible.builtin.shell: 
+        cmd: minikube start
+        executable: /bin/bash
+      become_user: vagrant
+
+# - hosts: minikube
+#   roles:
+#     jenkins
+  

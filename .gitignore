@@ -1,5 +1,11 @@
 /.vagrant
+
 /scripts/get_helm.sh
+/scripts/provision_vm.sh
+/scripts/minikubeConfiguration.sh 
+/scripts/venv
+/scripts/.idea
+
 /ansible/minikubeConfiguration.yml
 /ansible/roles/*/.travis.yml 
 /ansible/roles/*/tests
